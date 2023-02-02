@@ -1,2 +1,2 @@
 # caliswolio-project
-By: Paul Garland,
+By: Paul Garland, Michael Mears,
