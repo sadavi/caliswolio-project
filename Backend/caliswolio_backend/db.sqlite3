@@ -1,6 +1,0 @@
-CREATE TABLE Exercise(
-    Exercise_ID INTEGER PRIMARY KEY,
-    Exercise_Name TEXT NOT NULL,
-    Ex_Cat_ID INTEGER NOT NULL,
-    ExLevelID INTEGER NOT NULL
-);
