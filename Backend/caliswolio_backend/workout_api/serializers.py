@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Exercise, MemberAccount, FutureWorkout, FutureWorkoutExercises, PriorWorkout, PriorWorkoutExercises, TemplateExercises, TemplateWorkout
 
 # Need to fill out the rest of the models like the ones below
-class MemberSerializer(serializers.ModelSerializer):
+class MemberAccountSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'member_id',
