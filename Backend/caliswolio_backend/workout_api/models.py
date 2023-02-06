@@ -49,6 +49,9 @@ class FutureWorkout(models.Model):
     name = models.TextField(db_column='Name')
     perform_on = models.DateField(db_column='Perform_On')
 
+    class Meta:
+        db_table = 'Future_Workout'
+
 
 class FutureWorkoutExercises(models.Model):
     future_workout_ex_id = models.AutoField(db_column='Future_Workout_Ex_ID', primary_key=True, blank=True, null=True)
@@ -59,7 +62,6 @@ class FutureWorkoutExercises(models.Model):
     position_in_list = models.IntegerField(db_column='Position_In_List')
 
     class Meta:
-        managed = False
         db_table = 'Future_Workout_Exercises'
 
 
@@ -74,15 +76,14 @@ class MemberAccount(models.Model):
     zipcode = models.IntegerField(db_column='Zipcode')  
 
     class Meta:
-        managed = False
         db_table = 'Member_account'
 
 
 class PriorWorkout(models.Model):
     # Needs Completion
+    #########################
 
     class Meta:
-        managed = False
         db_table = 'Prior_Workout'
 
 
@@ -97,7 +98,6 @@ class PriorWorkoutExercises(models.Model):
     position_in_list = models.IntegerField(db_column='Position_In_List')
 
     class Meta:
-        managed = False
         db_table = 'Prior_Workout_Exercises'
 
 
@@ -109,14 +109,14 @@ class TemplateExercises(models.Model):
     target_reps = models.IntegerField(db_column='Target_Reps')
 
     class Meta:
-        managed = False
+        managed = False  # May need change
         db_table = 'Template_Exercises'
 
 
 class TemplateWorkout(models.Model):
     # Needs Completion
+    ###########################
     class Meta:
-        managed = False
         db_table = 'Template_Workout'
 
 
