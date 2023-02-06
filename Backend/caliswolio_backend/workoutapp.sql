@@ -1,48 +1,11 @@
----- First section where we define the five exercise related tables ----
-
--- Table to hold workout categories
-CREATE TABLE Workout_Category(
-    Cat_ID INTEGER PRIMARY KEY,
-    Name TEXT NOT NULL
-);
-
--- Table to hold workout levels
-CREATE TABLE Workout_Level(
-    Level_ID INTEGER PRIMARY KEY,
-    Name TEXT NOT NULL
-);
-
 -- Table for exercises
 CREATE TABLE Exercise(
     Exercise_ID INTEGER PRIMARY KEY,
-    Ex_Name TEXT NOT NULL,
+    Name TEXT NOT NULL,
+    Category TEXT NOT NULL,
+    Level TEXT NOT NULL,
     Description TEXT
 );
-
--- Table for exercise categories
-CREATE TABLE Exercise_Category(
-    Ex_Cat_ID INTEGER PRIMARY KEY,
-    Exercise_ID INTEGER NOT NULL,
-    Cat_ID INTEGER NOT NULL,
-    FOREIGN KEY (Exercise_ID) REFERENCES Exercise(Exercise_ID),
-    FOREIGN KEY (Cat_ID) REFERENCES Workout_Category(Cat_ID)
-);
-
--- Table for exercise levels 
-CREATE TABLE Exercise_Level(
-    Ex_Level_ID INTEGER PRIMARY KEY,
-    Exercise_ID INTEGER NOT NULL,
-    Level_ID INTEGER NOT NULL,
-    Default_Target_Sets INTEGER,
-    Default_Target_Reps INTEGER,
-    FOREIGN KEY (Exercise_ID) REFERENCES Exercise(Exercise_ID),
-    FOREIGN KEY (Level_ID) REFERENCES Workout_Level(Level_ID)
-);
-
----- ******************************************************************** ----
-
-
----- Second section where we finish out the rest of the database ----
 
 -- Table for member account
 CREATE TABLE Member_account(
@@ -129,48 +92,73 @@ CREATE TABLE Future_Workout(
 
 ---- ******************************************************************** ----
 
-INSERT INTO Exercise (Exercise_ID, Ex_Name)
-VALUES (1, "Scapular Pull"), (2, "Arch hang"), 
-(3, "Negative Pull-up"), (4, "Pull-up"),
-(5, "Wide Grip Pull-up"), (6, "L-sit Pull-up"),
-(7, "Muscle-up"), (8, "Vertical Push-up"),
-(9, "Incline Push-up"), (10, "Push-up"),
-(11, "Decline Push-up"), (12, "Diamond Push-up"),
-(13, "Pike Push-up"), (14, "Wall Assisted Handstand Push-up"),
-(15, "Pseudo-planche Push-up"), (16, "Freestanding Handstand Push-up"),
-(17, "Decline Pseudo-planche Push-up"), (18, "Planche Push-up"),
-(19, "Magic Push-up"), (20, "Static Dip Support Hold"),
-(21, "Negative Dip"), (22, "Seated Dip"),
-(23, "Parallel Bar Dip"), (24, "Straight Bar Dip"),
-(25, "Impossible Dip"), (26, "Vertical Row"),
-(27, "Incline Row"), (28, "Horizontal Row"),
-(29, "Wide-grip Incline Row"), (30, "Wide-grip Horizontal Row"),
-(31, "Decline Row"), (32, "Assisted Squat"),
-(33, "Air Squat"), (34, "Bulgarian Split Squat"),
-(35, "Beginner Shrimp Squat"), (36, "Intermediate Shrimp Squat"),
-(37, "Assisted Pistol Squat"), (38, "Advanced Shrimp Squat"),
-(39, "Pistol Squat"), (40, "Dragon Pistol Squat"),
-(41, "Romanian Deadlift"), (42, "Single Leg Deadlift"),
-(43, "Banded Nordic Curl Negative"), (44, "Banded Nordic Curl"),
-(45, "Nordic Curl"), (46, "Full Plank"),
-(47, "Half Plank"), (48, "L-sit"),
-(49, "Hanging Knee-raise"), (50, "Sit-up"),
-(51, "Crunch"), (52, "Toe-touch"),
-(53, "Superman Hold"), (54, "Mountain Climber"),
-(55, "Plank Row"), (56, "Pseudo-planche Hold"),
-(57, "Crow Hold"), (58, "Leg Raise"),
-(59, "Bicycle"), (60, "Side Plank With Rotation"),
-(61, "Banana Roll"), (62, "Hanging L-sit"),
-(63, "Hanging Leg Raise"), (64, "Reverse Deadlift"),
-(65, "Dragon Flag"), (66, "Front Lever"),
-(67, "Single-leg Straight Arm Side Plank"), (68, "Planche Hold");
-
-INSERT INTO Workout_Category (Cat_ID, Name)
-VALUES (1, "Pull-up"), (2, "Push-up"),
-(3, "Dip"), (4, "Row"),
-(5, "Squat"), (6, "Hinge"),
-(7, "Core");
-
-INSERT INTO Workout_Level (Level_ID, Name)
-VALUES (1, "Beginner"), (2, "Intermediate"),
-(3, "Advanced");
+INSERT INTO Exercise (Exercise_ID, Name, Category, Level)
+VALUES
+(1, "Scapular Pull", "Pull-up", "Beginner"),
+(2, "Arch hang", "Pull-up", "Beginner"),
+(3, "Negative Pull-up", "Pull-up", "Beginner"),
+(4, "Pull-up", "Pull-up", "Intermediate"),
+(5, "Wide Grip Pull-up", "Pull-up", "Intermediate"),
+(6, "L-sit Pull-up", "Pull-up", "Advanced"),
+(7, "Muscle-up", "Pull-up", "Advanced"),
+(8, "Vertical Push-up", "Push-up", "Advanced"),
+(9, "Incline Push-up", "Push-up", "Beginner"),
+(10, "Push-up", "Push-up", "Beginner"),
+(11, "Decline Push-up", "Push-up", "Beginner"),
+(12, "Diamond Push-up", "Push-up", "Intermediate"),
+(13, "Pike Push-up", "Push-up", "Intermediate"),
+(14, "Wall Assisted Handstand Push-up", "Push-up", "Intermediate"),
+(15, "Pseudo-planche Push-up", "Push-up", "Intermediate"),
+(16, "Freestanding Handstand Push-up", "Push-up", "Advanced"),
+(17, "Decline Pseudo-planche Push-up", "Push-up", "Advanced"),
+(18, "Planche Push-up", "Push-up", "Advanced"),
+(19, "Magic Push-up", "Push-up", "Advanced"),
+(20, "Static Dip Support Hold", "Dip", "Beginner"),
+(21, "Negative Dip", "Dip", "Beginner"),
+(22, "Seated Dip", "Dip", "Beginner"),
+(23, "Parallel Bar Dip", "Dip", "Intermediate"),
+(24, "Straight Bar Dip", "Dip", "Intermediate"),
+(25, "Impossible Dip", "Dip", "Advanced"),
+(26, "Vertical Row", "Row", "Beginner"),
+(27, "Incline Row", "Row", "Beginner"),
+(28, "Horizontal Row", "Row", "Intermediate"),
+(29, "Wide-grip Incline Row", "Row", "Intermediate"),
+(30, "Wide-grip Horizontal Row", "Row", "Advanced"),
+(31, "Decline Row", "Row", "Advanced"),
+(32, "Assisted Squat", "Squat", "Beginner"),
+(33, "Air Squat", "Squat", "Beginner"),
+(34, "Bulgarian Split Squat", "Squat", "Beginner"),
+(35, "Beginner Shrimp Squat", "Squat", "Intermediate"),
+(36, "Intermediate Shrimp Squat", "Squat", "Intermediate"),
+(37, "Assisted Pistol Squat", "Squat", "Intermediate"),
+(38, "Advanced Shrimp Squat", "Squat", "Advanced"),
+(39, "Pistol Squat", "Squat", "Advanced"),
+(40, "Dragon Pistol Squat", "Squat", "Advanced"),
+(41, "Romanian Deadlift", "Hinge", "Beginner"),
+(42, "Single Leg Deadlift", "Hinge", "Intermediate"),
+(43, "Banded Nordic Curl Negative", "Hinge", "Intermediate"),
+(44, "Banded Nordic Curl", "Hinge", "Advanced"),
+(45, "Nordic Curl", "Hinge", "Advanced"),
+(46, "Full Plank", "Core", "Beginner"),
+(47, "Half Plank", "Core", "Beginner"),
+(48, "L-sit", "Core", "Beginner"),
+(49, "Hanging Knee-raise", "Core", "Beginner"),
+(50, "Sit-up", "Core", "Beginner"),
+(51, "Crunch", "Core", "Beginner"),
+(52, "Toe-touch", "Core", "Beginner"),
+(53, "Superman Hold", "Core", "Beginner"),
+(54, "Mountain Climber", "Core", "Beginner"),
+(55, "Plank Row", "Core", "Intermediate"),
+(56, "Pseudo-planche Hold", "Core", "Intermediate"),
+(57, "Crow Hold", "Core", "Intermediate"),
+(58, "Leg Raise", "Core", "Intermediate"),
+(59, "Bicycle", "Core", "Intermediate"),
+(60, "Side Plank With Rotation", "Core", "Intermediate"),
+(61, "Banana Roll", "Core", "Intermediate"),
+(62, "Hanging L-sit", "Core", "Intermediate"),
+(63, "Hanging Leg Raise", "Core", "Intermediate"),
+(64, "Reverse Deadlift", "Core", "Advanced"),
+(65, "Dragon Flag", "Core", "Advanced"),
+(66, "Front Lever", "Core", "Advanced"),
+(67, "Single-leg Straight Arm Side Plank", "Core", "Advanced"),
+(68, "Planche Hold", "Core", "Advanced");
