@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'caliswolio_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'workoutapp.sql',
+        'NAME': BASE_DIR/'workoutapp.db',
     }
 }
 

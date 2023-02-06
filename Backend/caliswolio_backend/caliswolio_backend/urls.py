@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from xml.etree.ElementInclude import include
-from django.contrib import admin, 
+from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.models import User # maybe
 from rest_framework import routers, serializers, viewsets  # maybe
@@ -23,5 +23,4 @@ from rest_framework import routers, serializers, viewsets  # maybe
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls'))
 ]
