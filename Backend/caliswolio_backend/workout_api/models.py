@@ -7,7 +7,7 @@ from django.db import models
 
 
 class Exercise(models.Model):
-    exercise_id = models.AutoField(db_column='Exercise_ID', primary_key=True, blank=True, null=True)
+    exercise_id = models.AutoField(db_column='Exercise_ID', primary_key=True, blank=True, null=False)
     name = models.TextField(db_column='Name')
     category = models.TextField(db_column='Category')
     level = models.TextField(db_column='Level')
@@ -19,10 +19,10 @@ class Exercise(models.Model):
 
 
 class FutureWorkout(models.Model):
-    future_workout_id = models.AutoField(db_column='Future_Workout_ID', primary_key=True, blank=True, null=True)
-    member = models.ForeignKey('Member_account', models.DO_NOTHING, db_column='Member_ID')
-    level = models.ForeignKey('WorkoutLevel', models.DO_NOTHING, db_column='Level_ID')
-    category = models.ForeignKey('WorkoutCategory', models.DO_NOTHING, db_column='Cat_ID')
+    future_workout_id = models.AutoField(db_column='Future_Workout_ID', primary_key=True, blank=True, null=False)
+    member = models.ForeignKey('MemberAccount', models.DO_NOTHING, db_column='Member_ID')
+    level = models.ForeignKey('Exercise', models.DO_NOTHING, related_name='future_level', db_column='Level')
+    category = models.ForeignKey('Exercise', models.DO_NOTHING, related_name='future_cat', db_column='Category')
     name = models.TextField(db_column='Name')
     perform_on = models.DateField(db_column='Perform_On')
 
@@ -31,7 +31,7 @@ class FutureWorkout(models.Model):
 
 
 class FutureWorkoutExercises(models.Model):
-    future_workout_ex_id = models.AutoField(db_column='Future_Workout_Ex_ID', primary_key=True, blank=True, null=True)
+    future_workout_ex_id = models.AutoField(db_column='Future_Workout_Ex_ID', primary_key=True, blank=True, null=False)
     future_workout = models.ForeignKey('FutureWorkout', models.DO_NOTHING, db_column='Future_Workout_ID')
     exercise = models.ForeignKey(Exercise, models.DO_NOTHING, db_column='Exercise_ID')
     target_sets = models.IntegerField(db_column='Target_Sets', blank=True, null=True)
@@ -44,7 +44,7 @@ class FutureWorkoutExercises(models.Model):
 
 
 class MemberAccount(models.Model):
-    member_id = models.AutoField(db_column='Member_ID', primary_key=True, blank=True, null=True)
+    member_id = models.AutoField(db_column='Member_ID', primary_key=True, blank=True, null=False)
     email = models.TextField(db_column='Email')
     password = models.TextField(db_column='Password')
     phone_number = models.TextField(db_column='Phone_Number')
@@ -59,10 +59,10 @@ class MemberAccount(models.Model):
 
 
 class PriorWorkout(models.Model):
-    workout_id = models.AutoField(db_column='Workout_ID', primary_key=True, blank=True, null=True)
-    member = models.ForeignKey('Member_account', models.DO_NOTHING, db_column='Member_ID')
-    level = models.ForeignKey('WorkoutLevel', models.DO_NOTHING, db_column='Level_ID')
-    category = models.ForeignKey('WorkoutCategory', models.DO_NOTHING, db_column='Cat_ID')
+    workout_id = models.AutoField(db_column='Workout_ID', primary_key=True, blank=True, null=False)
+    member = models.ForeignKey('MemberAccount', models.DO_NOTHING, db_column='Member_ID')
+    level = models.ForeignKey('Exercise', models.DO_NOTHING, related_name= 'pri_level', db_column='Level')
+    category = models.ForeignKey('Exercise', models.DO_NOTHING, related_name= 'pri_cat', db_column='Category')
     when_completed = models.DateField(db_column='When_Completed')
 
     class Meta:
@@ -70,8 +70,8 @@ class PriorWorkout(models.Model):
 
 
 class PriorWorkoutExercises(models.Model):
-    prior_workout_ex_id = models.AutoField(db_column='Prior_Workout_Ex_ID', primary_key=True, blank=True, null=True)
-    exercise_id = models.IntegerField(db_column='Exercise_ID')
+    prior_workout_ex_id = models.AutoField(db_column='Prior_Workout_Ex_ID', primary_key=True, blank=True, null=False)
+    exercise_id = models.ForeignKey('Exercise', models.DO_NOTHING, db_column='Exercise_ID')
     workout = models.ForeignKey('PriorWorkout', models.DO_NOTHING, db_column='Workout_ID')
     target_sets = models.IntegerField(db_column='Target_Sets', blank=True, null=True)
     target_reps = models.IntegerField(db_column='Target_Reps', blank=True, null=True)
@@ -85,7 +85,7 @@ class PriorWorkoutExercises(models.Model):
 
 
 class TemplateExercises(models.Model):
-    template_ex_id = models.AutoField(db_column='Template_Ex_ID', primary_key=True, blank=True, null=True)
+    template_ex_id = models.AutoField(db_column='Template_Ex_ID', primary_key=True, blank=True, null=False)
     template = models.ForeignKey('TemplateWorkout', models.DO_NOTHING, db_column='Template_ID')
     exercise = models.ForeignKey(Exercise, models.DO_NOTHING, db_column='Exercise_ID')
     target_sets = models.IntegerField(db_column='Target_Sets', blank=True, null=True)
@@ -97,10 +97,10 @@ class TemplateExercises(models.Model):
 
 
 class TemplateWorkout(models.Model):
-    template_id = models.AutoField(db_column='Template_ID', primary_key=True, blank=True, null=True)
-    member = models.ForeignKey('Member_account', models.DO_NOTHING, db_column='Member_ID')
-    level = models.ForeignKey('WorkoutLevel', models.DO_NOTHING, db_column='Level_ID')
-    category = models.ForeignKey('WorkoutCategory', models.DO_NOTHING, db_column='Cat_ID')
+    template_id = models.AutoField(db_column='Template_ID', primary_key=True, blank=True, null=False)
+    member = models.ForeignKey('MemberAccount', models.DO_NOTHING, db_column='Member_ID')
+    level = models.ForeignKey('Exercise', models.DO_NOTHING, related_name= 'temp_level', db_column='Level')
+    category = models.ForeignKey('Exercise', models.DO_NOTHING, related_name='temp_cat', db_column='Category')
     name = models.TextField(db_column='Name')
 
     class Meta:
