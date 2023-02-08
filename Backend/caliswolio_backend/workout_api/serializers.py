@@ -103,3 +103,14 @@ class TemplateExercisesSerializer(serializers.ModelSerializer):
             'target_reps',
         )
         models = TemplateExercises
+
+class ExerciseSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'exercise_id',
+            'name',
+            'category',
+            'level',
+            'description',
+        )
+        model = Exercise
