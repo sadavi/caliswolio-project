@@ -40,7 +40,7 @@ CREATE TABLE Prior_Workout_Exercises(
     Actual_Sets INTEGER,
     Actual_Reps INTEGER,
     Position_In_List INTEGER NOT NULL,
-    FOREIGN KEY (Exercise_ID) REFERENCES Exercise(ExerciseID),
+    FOREIGN KEY (Exercise_ID) REFERENCES Exercise(Exercise_ID),
     FOREIGN KEY (Workout_ID) REFERENCES Prior_Workout(Workout_ID)
 );
 
