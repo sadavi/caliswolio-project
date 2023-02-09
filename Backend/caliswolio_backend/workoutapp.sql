@@ -82,6 +82,8 @@ CREATE TABLE Prior_Workout_Exercises(
     Position_In_List INTEGER NOT NULL,
     FOREIGN KEY (Exercise_ID) REFERENCES Exercise(ExerciseID),
     FOREIGN KEY (Prior_Workout_ID) REFERENCES Prior_Workout(Prior_Workout_ID)
+    FOREIGN KEY (Exercise_ID) REFERENCES Exercise(Exercise_ID),
+    FOREIGN KEY (Workout_ID) REFERENCES Prior_Workout(Workout_ID)
 );
 
 -- Table for future workout exercises
