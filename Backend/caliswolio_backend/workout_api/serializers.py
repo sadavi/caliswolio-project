@@ -27,3 +27,78 @@ class ExerciseSerializer(serializers.ModelSerializer):
             'description',
         )
         model = Exercise
+
+
+class FutureWorkoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'future_workout_id',
+            'level_id',
+            'category_id',
+            'name',
+            'perform_on',
+        )
+        model = FutureWorkout
+
+
+class FutureWorkoutExercisesSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'future_workout_ex_id',
+            'future_workout_id',
+            'exercise_id',
+            'target_sets',
+            'target_reps',
+            'position_in_list',
+        )
+        model = FutureWorkoutExercises
+        
+
+class PriorWorkoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'workout_id',
+            'member_id',
+            'level_id',
+            'category_id',
+            'when_completed',
+        )
+        model = PriorWorkout
+
+
+class PriorWorkoutExercisesSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'prior_workout_ex_id',
+            'exercise_id',
+            'workout_id',
+            'target_sets',
+            'target_reps',
+            'actual_sets',
+            'actual_reps',
+            'position_in_list',
+        )
+        model = PriorWorkoutExercises
+
+
+class TemplateWorkoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'template_id',
+            'member_id',
+            'level_id',
+            'category_id',
+            'name',
+        )
+
+
+class TemplateExercisesSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'template_ex_id',
+            'template_id',
+            'exercise_id',
+            'target_sets',
+            'target_reps',
+        )
+        
