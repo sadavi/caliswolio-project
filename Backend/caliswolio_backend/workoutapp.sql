@@ -1,9 +1,10 @@
--- Table for exercises
+-- Table for levels
 CREATE TABLE Level(
     Level_ID INTEGER PRIMARY KEY,
     Name TEXT NOT NULL
 );
 
+-- Table for exercises
 CREATE TABLE Exercise(
     Exercise_ID INTEGER PRIMARY KEY,
     Name TEXT NOT NULL,
