@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Exercise, MemberAccount, FutureWorkout, PriorWorkout, PriorWorkoutExercises, TemplateExercises
+from .models import Exercise, MemberAccount, FutureWorkout, FutureWorkoutExercises, PriorWorkout, PriorWorkoutExercises, TemplateExercises, TemplateWorkout
 
 # Need to fill out the rest of the models like the ones below
 class MemberSerializer(serializers.ModelSerializer):
@@ -90,6 +90,7 @@ class TemplateWorkoutSerializer(serializers.ModelSerializer):
             'category_id',
             'name',
         )
+        models = TemplateWorkout
 
 
 class TemplateExercisesSerializer(serializers.ModelSerializer):
@@ -101,4 +102,4 @@ class TemplateExercisesSerializer(serializers.ModelSerializer):
             'target_sets',
             'target_reps',
         )
-        
+        models = TemplateExercises
