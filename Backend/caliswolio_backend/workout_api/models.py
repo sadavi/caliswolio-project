@@ -25,40 +25,6 @@ class MemberAccount(models.Model):  #CRUD  # ****
     class Meta:
         db_table = 'Member_account'
 
-
-class FutureWorkout(models.Model):  #CRUD  #****
-    future_workout_id = models.AutoField(db_column='Future_Workout_ID', primary_key=True, blank=True, null=False)
-    member = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='future_mem', db_column='Member_ID')
-    level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'future_level_id', db_column='Level_ID')
-    category = models.ForeignKey('Exercise', models.DO_NOTHING, related_name='future_cat', db_column='Category')
-    name = models.TextField(db_column='Name')
-    perform_on = models.DateField(db_column='Perform_On')
-
-    class Meta:
-        db_table = 'Future_Workout'
-
-
-class PriorWorkout(models.Model):  #CRUD  #****
-    workout_id = models.AutoField(db_column='Workout_ID', primary_key=True, blank=True, null=False)
-    member = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='pri_mem', db_column='Member_ID')
-    level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'pri_level_id', db_column='Level_ID')
-    category = models.ForeignKey('Exercise', models.DO_NOTHING, related_name= 'pri_cat', db_column='Category')
-    when_completed = models.DateField(db_column='When_Completed')
-
-    class Meta:
-        db_table = 'Prior_Workout'
-
-
-class TemplateWorkout(models.Model): #CRUD   #****
-    template_id = models.AutoField(db_column='Template_ID', primary_key=True, blank=True, null=False)
-    member = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='temp_mem', db_column='Member_ID')
-    level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'temp_level_id', db_column='Level_ID')
-    category = models.ForeignKey('Exercise', models.DO_NOTHING, related_name='temp_cat', db_column='Category')
-    name = models.TextField(db_column='Name')
-
-    class Meta:
-        db_table = 'Template_Workout'
-
 class Exercise(models.Model):
     exercise_id = models.AutoField(db_column='Exercise_ID', primary_key=True, blank=True, null=False)
     name = models.TextField(db_column='Name')
@@ -70,42 +36,75 @@ class Exercise(models.Model):
         # managed = False
         db_table = 'Exercise'
 
+class FutureWorkout(models.Model):  #CRUD  #****
+    future_workout_id = models.AutoField(db_column='Future_Workout_ID', primary_key=True, blank=True, null=False)
+    member_id = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='future_mem', db_column='Member_ID')
+    level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'future_level_id', db_column='Level_ID')
+    category_id = models.ForeignKey('Exercise', models.DO_NOTHING, related_name='future_cat', db_column='Category')
+    name = models.TextField(db_column='Name')
+    perform_on = models.DateField(db_column='Perform_On')
 
-class FutureWorkoutExercises(models.Model):
-    future_workout_ex_id = models.AutoField(db_column='Future_Workout_Ex_ID', primary_key=True, blank=True, null=False)
-    future_workout = models.ForeignKey('FutureWorkout', models.DO_NOTHING, db_column='Future_Workout_ID')
-    exercise = models.ForeignKey(Exercise, models.DO_NOTHING, db_column='Exercise_ID')
+    class Meta:
+        db_table = 'Future_Workout'
+
+
+class PriorWorkout(models.Model):  #CRUD  #****
+    prior_workout_id = models.AutoField(db_column='Workout_ID', primary_key=True, blank=True, null=False)
+    member_id = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='pri_mem', db_column='Member_ID')
+    level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'pri_level_id', db_column='Level_ID')
+    category_id = models.ForeignKey('Exercise', models.DO_NOTHING, related_name= 'pri_cat', db_column='Category')
+    when_completed = models.DateField(db_column='When_Completed')
+
+    class Meta:
+        db_table = 'Prior_Workout'
+
+
+class TemplateWorkout(models.Model): #CRUD   #****
+    template_id = models.AutoField(db_column='Template_ID', primary_key=True, blank=True, null=False)
+    member = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='temp_mem', db_column='Member_ID')
+    level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'temp_level_id', db_column='Level_ID')
+    category_id = models.ForeignKey('Exercise', models.DO_NOTHING, related_name='temp_cat', db_column='Category')
+    name = models.TextField(db_column='Name')
+
+    class Meta:
+        db_table = 'Template_Workout'
+
+class TemplateExercise(models.Model):
+    template_ex_id = models.AutoField(db_column='Template_Ex_ID', primary_key=True, blank=True, null=False)
+    template_id = models.ForeignKey('TemplateWorkout', models.DO_NOTHING, db_column='Template_ID')
+    exercise_id = models.ForeignKey('Exercise', models.DO_NOTHING, db_column='Exercise_ID')
     target_sets = models.IntegerField(db_column='Target_Sets', blank=True, null=True)
     target_reps = models.IntegerField(db_column='Target_Reps', blank=True, null=True)
     position_in_list = models.IntegerField(db_column='Position_In_List')
 
     class Meta:
         managed = False
-        db_table = 'Future_Workout_Exercises'
+        db_table = 'Template_Exercise'
 
-
-class PriorWorkoutExercises(models.Model): #CRD
-    prior_workout_ex_id = models.AutoField(db_column='Prior_Workout_Ex_ID', primary_key=True, blank=True, null=False)
-    exercise_id = models.ForeignKey('Exercise', models.DO_NOTHING, default= 1,  db_column='Exercise_ID')
-    workout = models.ForeignKey('PriorWorkout', models.DO_NOTHING, default= 1, db_column='Workout_ID')
+class FutureWorkoutExercise(models.Model):
+    future_workout_ex_id = models.AutoField(db_column='Future_Workout_Ex_ID', primary_key=True, blank=True, null=False)
+    future_workout_id = models.ForeignKey('FutureWorkout', models.DO_NOTHING, db_column='Future_Workout_ID')
+    exercise_id = models.ForeignKey('Exercise', models.DO_NOTHING, db_column='Exercise_ID')
     target_sets = models.IntegerField(db_column='Target_Sets', blank=True, null=True)
     target_reps = models.IntegerField(db_column='Target_Reps', blank=True, null=True)
-    
+    position_in_list = models.IntegerField(db_column='Position_In_List')
+
+    class Meta:
+        managed = False
+        db_table = 'Future_Workout_Exercise'
+
+
+class PriorWorkoutExercise(models.Model): #CRD
+    prior_workout_ex_id = models.AutoField(db_column='Prior_Workout_Ex_ID', primary_key=True, blank=True, null=False)
+    prior_workout_id = models.ForeignKey('PriorWorkout', models.DO_NOTHING, default= 1, db_column='Prior_Workout_ID')
+    exercise_id = models.ForeignKey('Exercise', models.DO_NOTHING, default= 1,  db_column='Exercise_ID')
+    target_sets = models.IntegerField(db_column='Target_Sets', blank=True, null=True)
+    target_reps = models.IntegerField(db_column='Target_Reps', blank=True, null=True)
     position_in_list = models.IntegerField(db_column='Position_In_List')
 
     class Meta:
         # managed = False
-        db_table = 'Prior_Workout_Exercises'
+        db_table = 'Prior_Workout_Exercise'
 
 
 
-class TemplateExercises(models.Model):
-    template_ex_id = models.AutoField(db_column='Template_Ex_ID', primary_key=True, blank=True, null=False)
-    template = models.ForeignKey('TemplateWorkout', models.DO_NOTHING, db_column='Template_ID')
-    exercise = models.ForeignKey(Exercise, models.DO_NOTHING, db_column='Exercise_ID')
-    target_sets = models.IntegerField(db_column='Target_Sets', blank=True, null=True)
-    target_reps = models.IntegerField(db_column='Target_Reps', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'Template_Exercises'

@@ -1,8 +1,12 @@
 from django.contrib import admin
-from .models import MemberAccount, FutureWorkout, PriorWorkout, PriorWorkoutExercises, TemplateExercises
+from .models import Level, MemberAccount, Exercise, FutureWorkout, PriorWorkout, TemplateWorkout, FutureWorkoutExercise, PriorWorkoutExercise, TemplateExercise
 
+admin.site.register(Level)
 admin.site.register(MemberAccount)
+admin.site.register(Exercise)
 admin.site.register(FutureWorkout)
 admin.site.register(PriorWorkout)
-admin.site.register(PriorWorkoutExercises)
-admin.site.register(TemplateExercises)
+admin.site.register(TemplateWorkout)
+admin.site.register(FutureWorkoutExercise)
+admin.site.register(PriorWorkoutExercise)
+admin.site.register(TemplateExercise)

@@ -1,5 +1,13 @@
 from rest_framework import serializers
-from .models import Exercise, MemberAccount, FutureWorkout, FutureWorkoutExercises, PriorWorkout, PriorWorkoutExercises, TemplateExercises, TemplateWorkout
+from .models import Level, MemberAccount, Exercise, FutureWorkout, PriorWorkout, TemplateWorkout, FutureWorkoutExercise,  PriorWorkoutExercise, TemplateExercise
+
+class LevelSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'level_id',
+            'name',
+        )
+        model = Level
 
 class MemberAccountSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,7 +30,7 @@ class ExerciseSerializer(serializers.ModelSerializer):
             'exercise_id',
             'name',
             'category',
-            'level',
+            'level_id',
             'description',
         )
         model = Exercise
@@ -32,52 +40,24 @@ class FutureWorkoutSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'future_workout_id',
+            'member_id',
             'level_id',
             'category_id',
             'name',
             'perform_on',
         )
-        model = FutureWorkout
-
-    # not in admin view
-class FutureWorkoutExercisesSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = (
-            'future_workout_ex_id',
-            'future_workout_id',
-            'exercise_id',
-            'target_sets',
-            'target_reps',
-            'position_in_list',
-        )
-        model = FutureWorkoutExercises
-        
+        model = FutureWorkout        
 
 class PriorWorkoutSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
-            'workout_id',
+            'prior_workout_id',
             'member_id',
             'level_id',
             'category_id',
             'when_completed',
         )
         model = PriorWorkout
-
-
-class PriorWorkoutExercisesSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = (
-            'prior_workout_ex_id',
-            'exercise_id',
-            'workout_id',
-            'target_sets',
-            'target_reps',
-            'actual_sets',
-            'actual_reps',
-            'position_in_list',
-        )
-        model = PriorWorkoutExercises
 
     # not in admin view
 class TemplateWorkoutSerializer(serializers.ModelSerializer):
@@ -92,7 +72,7 @@ class TemplateWorkoutSerializer(serializers.ModelSerializer):
         models = TemplateWorkout
 
 
-class TemplateExercisesSerializer(serializers.ModelSerializer):
+class TemplateExerciseSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'template_ex_id',
@@ -100,5 +80,31 @@ class TemplateExercisesSerializer(serializers.ModelSerializer):
             'exercise_id',
             'target_sets',
             'target_reps',
+            'position_in_list',
         )
-        models = TemplateExercises
+        models = TemplateExercise
+
+    # not in admin view
+class FutureWorkoutExerciseSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'future_workout_ex_id',
+            'future_workout_id',
+            'exercise_id',
+            'target_sets',
+            'target_reps',
+            'position_in_list',
+        )
+        model = FutureWorkoutExercise
+
+class PriorWorkoutExerciseSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = (
+            'prior_workout_ex_id',
+            'exercise_id',
+            'prior_workout_id',
+            'target_sets',
+            'target_reps',
+            'position_in_list',
+        )
+        model = PriorWorkoutExercise
