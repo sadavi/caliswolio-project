@@ -13,10 +13,44 @@ CREATE TABLE Member_account(
     Email TEXT NOT NULL,
     Password TEXT NOT NULL,
     Phone_Number TEXT NOT NULL,
-    Level_ID INTEGER NOT NULL,
+    Level TEXT NOT NULL,
     Birth_Year INTEGER NOT NULL,
     Gender TEXT NOT NULL,
     Zipcode INTEGER NOT NULL
+);
+
+-- Table for workout templates
+CREATE TABLE Template_Workout(
+    Template_ID INTEGER PRIMARY KEY,
+    Member_ID INTEGER NOT NULL,
+    Level TEXT NOT NULL,
+    Category TEXT NOT NULL,
+    Name TEXT NOT NULL,
+    FOREIGN KEY (Level) REFERENCES Member_Account(Level),
+    FOREIGN KEY (Member_ID) REFERENCES Member_Account(Member_ID)
+);
+
+-- Table for prior workouts
+CREATE TABLE Prior_Workout(
+    Prior_Workout_ID INTEGER PRIMARY KEY,
+    Member_ID INTEGER NOT NULL,
+    Level TEXT NOT NULL,
+    Category TEXT NOT NULL,
+    When_Completed DATE,
+    FOREIGN KEY (Level) REFERENCES Member_Account(Level),
+    FOREIGN KEY (Member_ID) REFERENCES Member_Account(Member_ID)
+);
+
+-- Table for holding future workouts
+CREATE TABLE Future_Workout(
+    Future_Workout_ID INTEGER PRIMARY KEY,
+    Member_ID INTEGER NOT NULL,
+    Level TEXT NOT NULL,
+    Category TEXT NOT NULL,
+    Name TEXT NOT NULL,
+    Perform_On DATE,
+    FOREIGN KEY (Level) REFERENCES Member_Account(Level),
+    FOREIGN KEY (Member_ID) REFERENCES Member_Account(Member_ID)
 );
 
 -- Table for exercise template exercises
@@ -34,14 +68,14 @@ CREATE TABLE Template_Exercises(
 CREATE TABLE Prior_Workout_Exercises(
     Prior_Workout_Ex_ID INTEGER PRIMARY KEY,
     Exercise_ID INTEGER NOT NULL,
-    Workout_ID INTEGER NOT NULL,
+    Prior_Workout_ID INTEGER NOT NULL,
     Target_Sets INTEGER,
     Target_Reps INTEGER,
     Actual_Sets INTEGER,
     Actual_Reps INTEGER,
     Position_In_List INTEGER NOT NULL,
     FOREIGN KEY (Exercise_ID) REFERENCES Exercise(ExerciseID),
-    FOREIGN KEY (Workout_ID) REFERENCES Prior_Workout(Workout_ID)
+    FOREIGN KEY (Prior_Workout_ID) REFERENCES Prior_Workout(Prior_Workout_ID)
 );
 
 -- Table for future workout exercises
@@ -54,40 +88,6 @@ CREATE TABLE Future_Workout_Exercises(
     Position_In_List INTEGER NOT NULL,
     FOREIGN KEY (Exercise_ID) REFERENCES Exercise(Exercise_ID),
     FOREIGN KEY (Future_Workout_ID) REFERENCES Future_Workout(Future_Workout_ID)
-);
-
--- Table for workout templates
-CREATE TABLE Template_Workout(
-    Template_ID INTEGER PRIMARY KEY,
-    Member_ID INTEGER NOT NULL,
-    Level_ID INTEGER NOT NULL,
-    Category_ID INTEGER NOT NULL,
-    Name TEXT NOT NULL,
-    FOREIGN KEY (Level_ID) REFERENCES Member_Account(Level_ID),
-    FOREIGN KEY (Member_ID) REFERENCES Member_Account(Member_ID)
-);
-
--- Table for prior workouts
-CREATE TABLE Prior_Workout(
-    Workout_ID INTEGER PRIMARY KEY,
-    Member_ID INTEGER NOT NULL,
-    Level_ID INTEGER NOT NULL,
-    Category_ID INTEGER NOT NULL,
-    When_Completed DATE,
-    FOREIGN KEY (Level_ID) REFERENCES Member_Account(Level_ID),
-    FOREIGN KEY (Member_ID) REFERENCES Member_Account(Member_ID)
-);
-
--- Table for holding future workouts
-CREATE TABLE Future_Workout(
-    Future_Workout_ID INTEGER PRIMARY KEY,
-    Member_ID INTEGER NOT NULL,
-    Level_ID INTEGER NOT NULL,
-    Category_ID INTEGER NOT NULL,
-    Name TEXT NOT NULL,
-    Perform_On DATE,
-    FOREIGN KEY (Level_ID) REFERENCES Member_Account(Level_ID),
-    FOREIGN KEY (Member_ID) REFERENCES Member_Account(Member_ID)
 );
 
 ---- ******************************************************************** ----
