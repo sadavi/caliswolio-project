@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import Exercise, MemberAccount, FutureWorkout, FutureWorkoutExercises, PriorWorkout, PriorWorkoutExercises, TemplateExercises, TemplateWorkout
 
-# Need to fill out the rest of the models like the ones below
 class MemberAccountSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
@@ -16,7 +15,7 @@ class MemberAccountSerializer(serializers.ModelSerializer):
         )
         model = MemberAccount
 
-
+    # not in admin view
 class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
@@ -40,7 +39,7 @@ class FutureWorkoutSerializer(serializers.ModelSerializer):
         )
         model = FutureWorkout
 
-
+    # not in admin view
 class FutureWorkoutExercisesSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
@@ -80,7 +79,7 @@ class PriorWorkoutExercisesSerializer(serializers.ModelSerializer):
         )
         model = PriorWorkoutExercises
 
-
+    # not in admin view
 class TemplateWorkoutSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
@@ -103,14 +102,3 @@ class TemplateExercisesSerializer(serializers.ModelSerializer):
             'target_reps',
         )
         models = TemplateExercises
-
-class ExerciseSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = (
-            'exercise_id',
-            'name',
-            'category',
-            'level',
-            'description',
-        )
-        model = Exercise
