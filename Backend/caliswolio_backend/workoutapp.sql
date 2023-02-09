@@ -1,10 +1,16 @@
 -- Table for exercises
+CREATE TABLE Level(
+    Level_ID INTEGER PRIMARY KEY,
+    Name TEXT NOT NULL
+);
+
 CREATE TABLE Exercise(
     Exercise_ID INTEGER PRIMARY KEY,
     Name TEXT NOT NULL,
     Category TEXT NOT NULL,
-    Level TEXT NOT NULL,
-    Description TEXT
+    Level_ID INTEGER NOT NULL,
+    Description TEXT,
+    FOREIGN KEY (Level_ID) REFERENCES Level(Level_ID)
 );
 
 -- Table for member account
@@ -13,20 +19,21 @@ CREATE TABLE Member_account(
     Email TEXT NOT NULL,
     Password TEXT NOT NULL,
     Phone_Number TEXT NOT NULL,
-    Level TEXT NOT NULL,
+    Level_ID INTEGER NOT NULL,
     Birth_Year INTEGER NOT NULL,
     Gender TEXT NOT NULL,
-    Zipcode INTEGER NOT NULL
+    Zipcode INTEGER NOT NULL,
+    FOREIGN KEY (Level_ID) REFERENCES Level(Level_ID)
 );
 
 -- Table for workout templates
 CREATE TABLE Template_Workout(
     Template_ID INTEGER PRIMARY KEY,
     Member_ID INTEGER NOT NULL,
-    Level TEXT NOT NULL,
+    Level_ID INTEGER NOT NULL,
     Category TEXT NOT NULL,
     Name TEXT NOT NULL,
-    FOREIGN KEY (Level) REFERENCES Member_Account(Level),
+    FOREIGN KEY (Level_ID) REFERENCES Level(Level_ID),
     FOREIGN KEY (Member_ID) REFERENCES Member_Account(Member_ID)
 );
 
@@ -34,10 +41,10 @@ CREATE TABLE Template_Workout(
 CREATE TABLE Prior_Workout(
     Prior_Workout_ID INTEGER PRIMARY KEY,
     Member_ID INTEGER NOT NULL,
-    Level TEXT NOT NULL,
+    Level_ID INTEGER NOT NULL,
     Category TEXT NOT NULL,
     When_Completed DATE,
-    FOREIGN KEY (Level) REFERENCES Member_Account(Level),
+    FOREIGN KEY (Level_ID) REFERENCES Level(Level_ID)
     FOREIGN KEY (Member_ID) REFERENCES Member_Account(Member_ID)
 );
 
@@ -45,11 +52,11 @@ CREATE TABLE Prior_Workout(
 CREATE TABLE Future_Workout(
     Future_Workout_ID INTEGER PRIMARY KEY,
     Member_ID INTEGER NOT NULL,
-    Level TEXT NOT NULL,
+    Level_ID INTEGER NOT NULL,
     Category TEXT NOT NULL,
     Name TEXT NOT NULL,
     Perform_On DATE,
-    FOREIGN KEY (Level) REFERENCES Member_Account(Level),
+    FOREIGN KEY (Level_ID) REFERENCES Level(Level_ID)
     FOREIGN KEY (Member_ID) REFERENCES Member_Account(Member_ID)
 );
 
@@ -71,8 +78,6 @@ CREATE TABLE Prior_Workout_Exercises(
     Prior_Workout_ID INTEGER NOT NULL,
     Target_Sets INTEGER,
     Target_Reps INTEGER,
-    Actual_Sets INTEGER,
-    Actual_Reps INTEGER,
     Position_In_List INTEGER NOT NULL,
     FOREIGN KEY (Exercise_ID) REFERENCES Exercise(ExerciseID),
     FOREIGN KEY (Prior_Workout_ID) REFERENCES Prior_Workout(Prior_Workout_ID)
@@ -91,6 +96,11 @@ CREATE TABLE Future_Workout_Exercises(
 );
 
 ---- ******************************************************************** ----
+INSERT INTO Level (Level_ID, Name) 
+VALUES
+(1, "Beginner"),
+(2, "Intermediate"),
+(3, "Advanced");
 
 INSERT INTO Exercise (Exercise_ID, Name, Category, Level)
 VALUES
