@@ -78,7 +78,6 @@ class TemplateExercise(models.Model):
     position_in_list = models.IntegerField(db_column='Position_In_List')
 
     class Meta:
-        managed = False
         db_table = 'Template_Exercise'
 
 class FutureWorkoutExercise(models.Model):
@@ -90,7 +89,6 @@ class FutureWorkoutExercise(models.Model):
     position_in_list = models.IntegerField(db_column='Position_In_List')
 
     class Meta:
-        managed = False
         db_table = 'Future_Workout_Exercise'
 
 
