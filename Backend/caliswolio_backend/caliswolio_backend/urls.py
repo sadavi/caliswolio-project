@@ -23,7 +23,8 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('workout_api.urls')),
-    path('', views.getExercises),
+    path('getExercises', views.getExercises),
+    path('getLevels', views.getLevels),
 ]
 
 
