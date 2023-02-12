@@ -1,0 +1,23 @@
+[
+    {
+        "model": "workout_api.level",
+        "pk": 1,
+        "fields": {
+            "name": "beginner"
+        }
+    },
+    {
+        "model": "workout_api.level",
+        "pk": 2,
+        "fields": {
+            "name": "intermediate"
+        }
+    },
+    {
+        "model": "workout_api.level",
+        "pk": 3,
+        "fields": {
+            "name": "advanced"
+        }
+    }
+]

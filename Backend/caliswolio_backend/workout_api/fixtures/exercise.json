@@ -1,0 +1,682 @@
+[
+    {
+        "model": "workout_api.exercise",
+        "pk": 1,
+        "fields": {
+            "name": "Scapular Pull",
+            "category": "Pull-up",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 2,
+        "fields": {
+            "name": "Arch Hang",
+            "category": "Pull-up",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 3,
+        "fields": {
+            "name": "Negative Pull-up",
+            "category": "Pull-up",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 4,
+        "fields": {
+            "name": "Pull-up",
+            "category": "Pull-up",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 5,
+        "fields": {
+            "name": "Wide Grip Pull-up",
+            "category": "Pull-up",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 6,
+        "fields": {
+            "name": "L-sit Pull-up",
+            "category": "Pull-up",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 7,
+        "fields": {
+            "name": "Muscle-up",
+            "category": "Pull-up",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 8,
+        "fields": {
+            "name": "Vertical Push-up",
+            "category": "Push-up",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 9,
+        "fields": {
+            "name": "Incline Push-up",
+            "category": "Push-up",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 10,
+        "fields": {
+            "name": "Push-up",
+            "category": "Push-up",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 11,
+        "fields": {
+            "name": "Decline Push-up",
+            "category": "Push-up",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 12,
+        "fields": {
+            "name": "Diamon Push-up",
+            "category": "Push-up",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 13,
+        "fields": {
+            "name": "Pike Push-up",
+            "category": "Push-up",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 14,
+        "fields": {
+            "name": "Wall Assisted Handstand Push-up",
+            "category": "Push-up",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 15,
+        "fields": {
+            "name": "Pseudo-planche Push-up",
+            "category": "Push-up",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 16,
+        "fields": {
+            "name": "Freestanding Handstand Push-up",
+            "category": "Push-up",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 17,
+        "fields": {
+            "name": "Decline Pseudo-planche Push-up",
+            "category": "Push-up",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 18,
+        "fields": {
+            "name": "Planche Push-up",
+            "category": "Push-up",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 19,
+        "fields": {
+            "name": "Magic Push-up",
+            "category": "Push-up",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 20,
+        "fields": {
+            "name": "Static Dip Support Hold",
+            "category": "Dip",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 21,
+        "fields": {
+            "name": "Negative Dip",
+            "category": "Dip",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 22,
+        "fields": {
+            "name": "Seated Dip",
+            "category": "Dip",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 23,
+        "fields": {
+            "name": "Parallel Bar Dip",
+            "category": "Dip",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 24,
+        "fields": {
+            "name": "Straight Bar Dip",
+            "category": "Dip",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 25,
+        "fields": {
+            "name": "Impossible Dip",
+            "category": "Dip",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 26,
+        "fields": {
+            "name": "Vertical Row",
+            "category": "Row",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 27,
+        "fields": {
+            "name": "Incline Row",
+            "category": "Row",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 28,
+        "fields": {
+            "name": "Horizontal Row",
+            "category": "Row",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 29,
+        "fields": {
+            "name": "Wide-grip Incline Row",
+            "category": "Row",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 30,
+        "fields": {
+            "name": "Wide-grip Horizontal Row",
+            "category": "Row",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 31,
+        "fields": {
+            "name": "Decline Row",
+            "category": "Row",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 32,
+        "fields": {
+            "name": "Assisted Squat",
+            "category": "Squat",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 33,
+        "fields": {
+            "name": "Air Squat",
+            "category": "Squat",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 34,
+        "fields": {
+            "name": "Bulgarian Split Squat",
+            "category": "Squat",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 35,
+        "fields": {
+            "name": "Beginner Shrimp Squat",
+            "category": "Squat",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 36,
+        "fields": {
+            "name": "Intermediate Shrimp Squat",
+            "category": "Squat",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 37,
+        "fields": {
+            "name": "Assisted Pistol Squat",
+            "category": "Squat",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 38,
+        "fields": {
+            "name": "Advanced Shrimp Squat",
+            "category": "Squat",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 39,
+        "fields": {
+            "name": "Pistol Squat",
+            "category": "Squat",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 40,
+        "fields": {
+            "name": "Dragon Pistol Squat",
+            "category": "Squat",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 41,
+        "fields": {
+            "name": "Romanian Deadlift",
+            "category": "Hinge",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 42,
+        "fields": {
+            "name": "Single Leg Deadlift",
+            "category": "Hinge",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 43,
+        "fields": {
+            "name": "Banded Nordic Curl Negative",
+            "category": "Hinge",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 44,
+        "fields": {
+            "name": "Banded Nordic Curl",
+            "category": "Hinge",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 45,
+        "fields": {
+            "name": "Nordic Curl",
+            "category": "Hinge",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 46,
+        "fields": {
+            "name": "Full Plank",
+            "category": "Core",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 47,
+        "fields": {
+            "name": "Half Plank",
+            "category": "Core",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 48,
+        "fields": {
+            "name": "L-sit",
+            "category": "Core",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 49,
+        "fields": {
+            "name": "Hanging Knee-raise",
+            "category": "Core",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 50,
+        "fields": {
+            "name": "Sit-up",
+            "category": "Core",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 51,
+        "fields": {
+            "name": "Crunch",
+            "category": "Core",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 52,
+        "fields": {
+            "name": "Toe-touch",
+            "category": "Core",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 53,
+        "fields": {
+            "name": "Superman Hold",
+            "category": "Core",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 54,
+        "fields": {
+            "name": "Mountain Climber",
+            "category": "Core",
+            "level_id": 1,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 55,
+        "fields": {
+            "name": "Plank Row",
+            "category": "Core",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 56,
+        "fields": {
+            "name": "Pseudo-planche Hold",
+            "category": "Core",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 57,
+        "fields": {
+            "name": "Crow Hold",
+            "category": "Core",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 58,
+        "fields": {
+            "name": "Leg Raise",
+            "category": "Core",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 59,
+        "fields": {
+            "name": "Bicycle",
+            "category": "Core",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 60,
+        "fields": {
+            "name": "Side Plank with Rotation",
+            "category": "Core",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 61,
+        "fields": {
+            "name": "Banana Roll",
+            "category": "Core",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 62,
+        "fields": {
+            "name": "Hanging L-sit",
+            "category": "Core",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 63,
+        "fields": {
+            "name": "Hanging Leg Raise",
+            "category": "Core",
+            "level_id": 2,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 64,
+        "fields": {
+            "name": "Reverse Deadlift",
+            "category": "Core",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 65,
+        "fields": {
+            "name": "Dragon Flag",
+            "category": "Core",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 66,
+        "fields": {
+            "name": "Front Lever",
+            "category": "Core",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 67,
+        "fields": {
+            "name": "Single-leg Straight Arm Side Plank",
+            "category": "Core",
+            "level_id": 3,
+            "description": ""
+        }
+    },
+    {
+        "model": "workout_api.exercise",
+        "pk": 68,
+        "fields": { 
+            "name": "Planche Hold",
+            "category": "Core",
+            "level_id": 3,
+            "description": ""
+        }
+    }
+]
