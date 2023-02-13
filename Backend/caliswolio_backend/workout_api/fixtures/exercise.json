@@ -113,7 +113,7 @@
         "model": "workout_api.exercise",
         "pk": 12,
         "fields": {
-            "name": "Diamon Push-up",
+            "name": "Diamond Push-up",
             "category": "Push-up",
             "level_id": 2,
             "description": ""
