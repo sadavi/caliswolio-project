@@ -23,7 +23,7 @@ class MemberAccountSerializer(serializers.ModelSerializer):
         )
         model = MemberAccount
 
-    # not in admin view
+
 class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
@@ -59,7 +59,7 @@ class PriorWorkoutSerializer(serializers.ModelSerializer):
         )
         model = PriorWorkout
 
-    # not in admin view
+
 class TemplateWorkoutSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
@@ -84,7 +84,7 @@ class TemplateExerciseSerializer(serializers.ModelSerializer):
         )
         models = TemplateExercise
 
-    # not in admin view
+
 class FutureWorkoutExerciseSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
