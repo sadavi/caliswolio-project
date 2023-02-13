@@ -6,7 +6,6 @@ from rest_framework import status
 from workout_api.models import *
 from workout_api.serializers import *
 
-# seeing if typing this will fix the problem
 # READ
 @api_view(['GET'])  #  We may be able to keep as is due to us just needing a get command
 def getExercises(request):
