@@ -15,6 +15,12 @@ def getExercises(request):
     return Response(serializer.data)
 
 @api_view(['GET'])  #  We may be able to keep as is due to us just needing a get command
+def getExercise(request, exercise_id):
+    exercises = Exercise.objects.get(id=exercise_id)
+    serializer = ExerciseSerializer(exercises, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])  #  We may be able to keep as is due to us just needing a get command
 def getLevels(request):
     levels = Level.objects.all()
     serializer = LevelSerializer(levels, many=True)

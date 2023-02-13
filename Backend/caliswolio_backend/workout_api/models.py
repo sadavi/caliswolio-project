@@ -17,7 +17,7 @@ class Level(models.Model):  #R*
         db_table = 'Member_account'
 
 class Exercise(models.Model):  #R*
-    exercise_id = models.AutoField(db_column='Exercise_ID', primary_key=True, blank=True, null=False)
+    exercise_id = models.IntegerField(db_column='Exercise_ID', primary_key=True, blank=True, null=False)
     name = models.TextField(db_column='Name')
     category = models.TextField(db_column='Category')
     level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'ex_level_id', db_column='Level_ID')

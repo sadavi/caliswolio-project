@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('workout_api.urls')),
     path('getExercises', views.getExercises),
+    path('getExercise/<int:exercise_id>/', views.getExercise),
     path('getLevels', views.getLevels),
     path('Accounts', views.MemberAccountView.as_view()),
 ]
