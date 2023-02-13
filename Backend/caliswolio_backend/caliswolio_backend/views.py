@@ -15,8 +15,8 @@ def getExercises(request):
 
 @api_view(['GET'])  #  We may be able to keep as is due to us just needing a get command
 def getExercise(request, exercise_id):
-    exercises = Exercise.objects.get(id=exercise_id)
-    serializer = ExerciseSerializer(exercises, many=True)
+    exercises = Exercise.objects.get(exercise_id=exercise_id)
+    serializer = ExerciseSerializer(exercises, many=False)
     return Response(serializer.data)
 
 @api_view(['GET'])  #  We may be able to keep as is due to us just needing a get command
