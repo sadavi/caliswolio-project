@@ -5,24 +5,6 @@ from rest_framework import status
 from workout_api.models import *
 from workout_api.serializers import *
 
-# CREATE
-@api_view(['POST'])
-def createMemberAccount(request):
-    data = {
-        'Email': request.data.get('email'),
-        'Password': request.data.get('password'),
-        'Phone Number': request.data.get('phone_number'),
-        'Birth Year': request.data.get('birth_year'),
-        'Gender': request.data.get('gender'),
-        'Zipcode': request.data.get('zipcode'),
-        'Level': request.data.get('level_id'),
-    }
-    serializer =MemberAccountSerializer(data=data)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 # READ
 @api_view(['GET'])
@@ -86,32 +68,6 @@ def getPriorWorkoutExercise(request):
     return Response(serializer.data)
 
 
-# UPDATE
-@api_view(['PUT'])
-def updateMemberAccount(request, member_id):
-    member_instance = getMemberAccount(request)
-    if not member_instance:
-        return Response(
-            {"res": "Object with member id does not exist"},
-            status=status.HTTP_400_BAD_REQUEST
-        )
-    data = {
-        'Email': request.data.get('email'),
-        'Password': request.data.get('password'),
-        'Phone Number': request.data.get('phone_number'),
-        'Birth Year': request.data.get('birth_year'),
-        'Gender': request.data.get('gender'),
-        'Zipcode': request.data.get('zipcode'),
-        'Level': request.data.get('level_id'),
-    }
-    serializer = MemberAccountSerializer(instance=member_instance, data=data, partial=True)
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-# DELETE
-
 
 class MemberAccountView(APIView):
     def get_object(self, member_id):
@@ -120,3 +76,71 @@ class MemberAccountView(APIView):
             return MemberAccount.objects.get(id=member_id)
         except MemberAccount.DoesNotExist:
             return None
+
+    def get(self, member_id):
+        """
+        Helper method to get the object with given member_id
+        """
+        member_instance = self.get_object(member_id)
+        if not project_instance:
+            return Response(
+                {"res": "Object with project id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        serializer = ProjectSerializer(project_instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        # Create
+        data = {
+            'Email': request.data.get('email'),
+            'Password': request.data.get('password'),
+            'Phone Number': request.data.get('phone_number'),
+            'Birth Year': request.data.get('birth_year'),
+            'Gender': request.data.get('gender'),
+            'Zipcode': request.data.get('zipcode'),
+            'Level': request.data.get('level_id'),
+        }
+        serializer = MemberAccountSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, member_id):
+        #Update
+        member_instance = getMemberAccount(request)
+        if not member_instance:
+            return Response(
+                {"res": "Object with member id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        data = {
+            'Email': request.data.get('email'),
+            'Password': request.data.get('password'),
+            'Phone Number': request.data.get('phone_number'),
+            'Birth Year': request.data.get('birth_year'),
+            'Gender': request.data.get('gender'),
+            'Zipcode': request.data.get('zipcode'),
+            'Level': request.data.get('level_id'),
+        }
+        serializer = MemberAccountSerializer(instance=member_instance, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, member_id):
+        # Delete
+        member_instance = self.get_object(member_id)
+        if not member_instance:
+            return Response(
+                {"res": "Object with member id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        member_instance.delete()
+        return Response(
+            {"res": "object deleted!"},
+            status=status.HTTP_200_OK
+        )

@@ -28,7 +28,7 @@ class Exercise(models.Model):  #R*
         db_table = 'Exercise'
 
 
-class MemberAccount(models.Model):  #CR*UD
+class MemberAccount(models.Model):  #C*R*U*D*
     member_id = models.AutoField(db_column='Member_ID', primary_key=True, blank=True, null=False)
     email = models.TextField(db_column='Email')
     password = models.TextField(db_column='Password')
