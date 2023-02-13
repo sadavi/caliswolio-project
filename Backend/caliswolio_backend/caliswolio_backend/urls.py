@@ -16,6 +16,7 @@ Including another URLconf
 # from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import include, path
+from caliswolio_backend import views
 
 
 
@@ -23,13 +24,7 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('workout_api.urls')),
-    path('getExercises/', views.getExercises),
-    path('getExercise/<int:exercise_id>/', views.getExercise),
-    path('getLevels/', views.getLevels),
-    path('Accounts/', views.MemberAccountView.as_view()),
-    path('fw/', views.FutureWorkoutView.as_view()),
-    path('pw/', views.PriorWorkoutView.as_view()),
-    path('tw/', views.TemplateWorkoutView.as_view()),
 ]
+    
 
 

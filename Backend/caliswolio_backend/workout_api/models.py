@@ -17,7 +17,7 @@ class Level(models.Model):  #R*
         db_table = 'Member_account'
 
 class Exercise(models.Model):  #R*
-    exercise_id = models.IntegerField(db_column='Exercise_ID', primary_key=True, blank=True, null=False)
+    exercise_id = models.AutoField(db_column='Exercise_ID', primary_key=True, blank=True, null=False)
     name = models.TextField(db_column='Name')
     category = models.TextField(db_column='Category')
     level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'ex_level_id', db_column='Level_ID')
@@ -28,7 +28,7 @@ class Exercise(models.Model):  #R*
         db_table = 'Exercise'
 
 
-class MemberAccount(models.Model):  #C*R*U*D*
+class MemberAccount(models.Model):  #CR*UD
     member_id = models.AutoField(db_column='Member_ID', primary_key=True, blank=True, null=False)
     email = models.TextField(db_column='Email')
     password = models.TextField(db_column='Password')
@@ -39,7 +39,7 @@ class MemberAccount(models.Model):  #C*R*U*D*
     zipcode = models.IntegerField(db_column='Zipcode')
     
 
-class FutureWorkout(models.Model):  #C*R*U*D*
+class FutureWorkout(models.Model):  #CRUD
     future_workout_id = models.AutoField(db_column='Future_Workout_ID', primary_key=True, blank=True, null=False)
     member_id = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='future_mem', db_column='Member_ID')
     level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'future_level_id', db_column='Level_ID')
@@ -51,7 +51,7 @@ class FutureWorkout(models.Model):  #C*R*U*D*
         db_table = 'Future_Workout'
 
 
-class PriorWorkout(models.Model):  #C*R*U*D*
+class PriorWorkout(models.Model):  #CRUD
     prior_workout_id = models.AutoField(db_column='Workout_ID', primary_key=True, blank=True, null=False)
     member_id = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='pri_mem', db_column='Member_ID')
     level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'pri_level_id', db_column='Level_ID')
@@ -62,7 +62,7 @@ class PriorWorkout(models.Model):  #C*R*U*D*
         db_table = 'Prior_Workout'
 
 
-class TemplateWorkout(models.Model): #C*R*U*D* 
+class TemplateWorkout(models.Model): #CRUD 
     template_id = models.AutoField(db_column='Template_ID', primary_key=True, blank=True, null=False)
     member = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='temp_mem', db_column='Member_ID')
     level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'temp_level_id', db_column='Level_ID')

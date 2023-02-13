@@ -7,22 +7,28 @@ from workout_api.models import *
 from workout_api.serializers import *
 
 # READ
-@api_view(['GET'])  #  We may be able to keep as is due to us just needing a get command
+@api_view(['GET'])  
 def getExercises(request):
     exercises = Exercise.objects.all()
     serializer = ExerciseSerializer(exercises, many=True)
     return Response(serializer.data)
 
-@api_view(['GET'])  #  We may be able to keep as is due to us just needing a get command
+@api_view(['GET'])  
 def getExercise(request, exercise_id):
     exercises = Exercise.objects.get(exercise_id=exercise_id)
     serializer = ExerciseSerializer(exercises, many=False)
     return Response(serializer.data)
 
-@api_view(['GET'])  #  We may be able to keep as is due to us just needing a get command
+@api_view(['GET'])  
 def getLevels(request):
     levels = Level.objects.all()
     serializer = LevelSerializer(levels, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])  
+def getLevel(request, level_id):
+    levels = Level.objects.get(level_id=level_id)
+    serializer = LevelSerializer(levels, many=False)
     return Response(serializer.data)
 
 
@@ -296,11 +302,12 @@ class TemplateWorkoutView(APIView):
     def post(self, request):
         # Create
         data = {
-            'Prior Workout ID': request.data.get('prior_workout_id'),
+            'Template ID': request.data.get('prior_workout_id'),
             'Member ID': request.data.get('member_id'),
             'Level ID': request.data.get('level_id'),
             'Category ID': request.data.get('category_id'),
             'Completed': request.data.get('when_completed'),
+            'Name': request.data.get('name'),
         }
         serializer = TemplateWorkoutSerializer(data=data)
         if serializer.is_valid():
@@ -338,6 +345,302 @@ class TemplateWorkoutView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
         workout_instance.delete()
+        return Response(
+            {"res": "object deleted!"},
+            status=status.HTTP_200_OK
+        )
+
+class TemplateExerciseView(APIView):
+    def get_object(self, template_ex_id):
+        # Get the Template Exercise
+        try:
+            return TemplateExercise.objects.get(id=template_ex_id)
+        except TemplateExercise.DoesNotExist:
+            return None
+
+    def get(self, template_ex_id):
+        """
+        Helper method to get the object with given template_ex_id
+        """
+        exercise_instance = self.get_object(template_ex_id)
+        if not exercise_instance:
+            return Response(
+                {"res": "Object with exercise id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        serializer = TemplateExerciseSerializer(exercise_instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        # Create
+        data = {
+            'Template Exercise ID': request.data.get('template_ex_id'),
+            'Template ID': request.data.get('template_id'),
+            'Exercise ID': request.data.get('exercise_id'),
+            'Target Sets': request.data.get('target_sets'),
+            'Target Reps': request.data.get('target_reps'),
+            'Position in List': request.data.get('position_in_list'),
+        }
+        serializer = TemplateExerciseSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, template_ex_id):
+        #Update
+        exercise_instance = self.get_object(template_ex_id)
+        if not exercise_instance:
+            return Response(
+                {"res": "Object with exercise id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        data = {
+            'Template Exercise ID': request.data.get('template_ex_id'),
+            'Template ID': request.data.get('template_id'),
+            'Exercise ID': request.data.get('exercise_id'),
+            'Target Sets': request.data.get('target_sets'),
+            'Target Reps': request.data.get('target_reps'),
+            'Position in List': request.data.get('position_in_list'),
+        }
+        serializer = TemplateExerciseSerializer(instance=exercise_instance, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, template_ex_id):
+        # Delete
+        exercise_instance = self.get_object(template_ex_id)
+        if not exercise_instance:
+            return Response(
+                {"res": "Object with exercise id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        exercise_instance.delete()
+        return Response(
+            {"res": "object deleted!"},
+            status=status.HTTP_200_OK
+        )
+
+
+class TemplateWorkoutView(APIView):
+    def get_object(self, template_id):
+        # Get the Template Workout
+        try:
+            return TemplateWorkout.objects.get(id=template_id)
+        except TemplateWorkout.DoesNotExist:
+            return None
+
+    def get(self, template_id):
+        """
+        Helper method to get the object with given template_id
+        """
+        workout_instance = self.get_object(template_id)
+        if not workout_instance:
+            return Response(
+                {"res": "Object with workout id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        serializer = TemplateWorkoutSerializer(workout_instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        # Create
+        data = {
+            'Template ID': request.data.get('prior_workout_id'),
+            'Member ID': request.data.get('member_id'),
+            'Level ID': request.data.get('level_id'),
+            'Category ID': request.data.get('category_id'),
+            'Completed': request.data.get('when_completed'),
+            'Name': request.data.get('name'),
+        }
+        serializer = TemplateWorkoutSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, template_id):
+        #Update
+        workout_instance = self.get_object(template_id)
+        if not workout_instance:
+            return Response(
+                {"res": "Object with workout id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        data = {
+            'Template ID': request.data.get('template_id'),
+            'Member ID': request.data.get('member_id'),
+            'Level ID': request.data.get('level_id'),
+            'Category ID': request.data.get('category_id'),
+            'Name': request.data.get('name'),
+        }
+        serializer = TemplateWorkoutSerializer(instance=workout_instance, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, template_id):
+        # Delete
+        workout_instance = self.get_object(template_id)
+        if not workout_instance:
+            return Response(
+                {"res": "Object with workout id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        workout_instance.delete()
+        return Response(
+            {"res": "object deleted!"},
+            status=status.HTTP_200_OK
+        )
+
+class FutureWorkoutExerciseView(APIView):
+    def get_object(self, future_workout_ex_id):
+        # Get the Future Workout Exercise
+        try:
+            return FutureWorkoutExercise.objects.get(id=future_workout_ex_id)
+        except FutureWorkoutExercise.DoesNotExist:
+            return None
+
+    def get(self, future_workout_ex_id):
+        """
+        Helper method to get the object with given future_workout_ex_id
+        """
+        exercise_instance = self.get_object(future_workout_ex_id)
+        if not exercise_instance:
+            return Response(
+                {"res": "Object with exercise id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        serializer = FutureWorkoutExerciseSerializer(exercise_instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        # Create
+        data = {
+            'Future Workout Exercise ID': request.data.get('future_workout_ex_id'),
+            'Future Workout ID': request.data.get('future_workout_id'),
+            'Exercise ID': request.data.get('exercise_id'),
+            'Target Sets': request.data.get('target_sets'),
+            'Target Reps': request.data.get('target_reps'),
+            'Position in List': request.data.get('position_in_list'),
+        }
+        serializer = FutureWorkoutExerciseSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, future_workout_ex_id):
+        #Update
+        exercise_instance = self.get_object(future_workout_ex_id)
+        if not exercise_instance:
+            return Response(
+                {"res": "Object with exercise id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        data = {
+            'Future Workout Exercise ID': request.data.get('future_workout_ex_id'),
+            'Future Workout ID': request.data.get('future_workout_id'),
+            'Exercise ID': request.data.get('exercise_id'),
+            'Target Sets': request.data.get('target_sets'),
+            'Target Reps': request.data.get('target_reps'),
+            'Position in List': request.data.get('position_in_list'),
+        }
+        serializer = FutureWorkoutExerciseSerializer(instance=exercise_instance, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, future_workout_ex_id):
+        # Delete
+        exercise_instance = self.get_object(future_workout_ex_id)
+        if not exercise_instance:
+            return Response(
+                {"res": "Object with exercise id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        exercise_instance.delete()
+        return Response(
+            {"res": "object deleted!"},
+            status=status.HTTP_200_OK
+        )
+
+class PriorWorkoutExerciseView(APIView):
+    def get_object(self, prior_workout_ex_id):
+        # Get the Prior Workout Exercise
+        try:
+            return PriorWorkoutExercise.objects.get(id=prior_workout_ex_id)
+        except PriorWorkoutExercise.DoesNotExist:
+            return None
+
+    def get(self, prior_workout_ex_id):
+        """
+        Helper method to get the object with given prior_workout_ex_id
+        """
+        exercise_instance = self.get_object(prior_workout_ex_id)
+        if not exercise_instance:
+            return Response(
+                {"res": "Object with exercise id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        serializer = PriorWorkoutExerciseSerializer(exercise_instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        # Create
+        data = {
+            'Prior Workout Exercise ID': request.data.get('prior_workout_ex_id'),
+            'Prior Workout ID': request.data.get('prior_workout_id'),
+            'Exercise ID': request.data.get('exercise_id'),
+            'Target Sets': request.data.get('target_sets'),
+            'Target Reps': request.data.get('target_reps'),
+            'Position in List': request.data.get('position_in_list'),
+        }
+        serializer = PriorWorkoutExerciseSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, prior_workout_ex_id):
+        #Update
+        exercise_instance = self.get_object(prior_workout_ex_id)
+        if not exercise_instance:
+            return Response(
+                {"res": "Object with exercise id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        data = {
+            'Future Workout Exercise ID': request.data.get('future_workout_ex_id'),
+            'Future Workout ID': request.data.get('future_workout_id'),
+            'Exercise ID': request.data.get('exercise_id'),
+            'Target Sets': request.data.get('target_sets'),
+            'Target Reps': request.data.get('target_reps'),
+            'Position in List': request.data.get('position_in_list'),
+        }
+        serializer = PriorWorkoutExerciseSerializer(instance=exercise_instance, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, prior_workout_ex_id):
+        # Delete
+        exercise_instance = self.get_object(prior_workout_ex_id)
+        if not exercise_instance:
+            return Response(
+                {"res": "Object with exercise id does not exist"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        exercise_instance.delete()
         return Response(
             {"res": "object deleted!"},
             status=status.HTTP_200_OK
