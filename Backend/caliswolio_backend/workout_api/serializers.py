@@ -69,7 +69,7 @@ class TemplateWorkoutSerializer(serializers.ModelSerializer):
             'category_id',
             'name',
         )
-        models = TemplateWorkout
+        model = TemplateWorkout
 
 
 class TemplateExerciseSerializer(serializers.ModelSerializer):
@@ -82,7 +82,7 @@ class TemplateExerciseSerializer(serializers.ModelSerializer):
             'target_reps',
             'position_in_list',
         )
-        models = TemplateExercise
+        model = TemplateExercise
 
 
 class FutureWorkoutExerciseSerializer(serializers.ModelSerializer):
