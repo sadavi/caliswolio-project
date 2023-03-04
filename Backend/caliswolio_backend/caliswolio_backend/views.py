@@ -64,7 +64,7 @@ class FutureWorkoutList(mixins.ListModelMixin, mixins.CreateModelMixin, generics
 
     def get_queryset(self):
         member = self.kwargs['member_id']
-        return PriorWorkout.objects.filter(member_id=member)
+        return FutureWorkout.objects.filter(member_id=member)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -141,8 +141,8 @@ class PriorWorkoutDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mix
         return self.destroy(request, *args, **kwargs)
 
 class PriorWorkoutExerciseList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
-    queryset = PriorWorkout.objects.all()
-    serializer_class = PriorWorkoutSerializer
+    queryset = PriorWorkoutExercise.objects.all()
+    serializer_class = PriorWorkoutExerciseSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -171,7 +171,7 @@ class TemplateWorkoutList(mixins.ListModelMixin, mixins.CreateModelMixin, generi
 
     def get_queryset(self):
         member = self.kwargs['member_id']
-        return PriorWorkout.objects.filter(member_id=member)
+        return TemplateWorkout.objects.filter(member_id=member)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
