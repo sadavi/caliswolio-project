@@ -43,7 +43,7 @@ class FutureWorkout(models.Model):  #CRUD
     future_workout_id = models.AutoField(db_column='Future_Workout_ID', primary_key=True, blank=True, null=False)
     member_id = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='future_mem', db_column='Member_ID')
     level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'future_level_id', db_column='Level_ID')
-    category_id = models.ForeignKey('Exercise', models.DO_NOTHING, related_name='future_cat', db_column='Category')
+    category = models.TextField(db_column='Category', default='null')
     name = models.TextField(db_column='Name')
     perform_on = models.DateField(db_column='Perform_On')
 
@@ -55,7 +55,7 @@ class PriorWorkout(models.Model):  #CRUD
     prior_workout_id = models.AutoField(db_column='Workout_ID', primary_key=True, blank=True, null=False)
     member_id = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='pri_mem', db_column='Member_ID')
     level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'pri_level_id', db_column='Level_ID')
-    category_id = models.ForeignKey('Exercise', models.DO_NOTHING, related_name= 'pri_cat', db_column='Category')
+    category = models.TextField(db_column='Category', default='null')
     when_completed = models.DateField(db_column='When_Completed')
 
     class Meta:
@@ -66,7 +66,7 @@ class TemplateWorkout(models.Model): #CRUD
     template_id = models.AutoField(db_column='Template_ID', primary_key=True, blank=True, null=False)
     member = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='temp_mem', db_column='Member_ID')
     level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'temp_level_id', db_column='Level_ID')
-    category_id = models.ForeignKey('Exercise', models.DO_NOTHING, related_name='temp_cat', db_column='Category')
+    category = models.TextField(db_column='Category', default='null')
     name = models.TextField(db_column='Name')
 
     class Meta:

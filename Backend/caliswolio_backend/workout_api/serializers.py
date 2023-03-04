@@ -42,7 +42,7 @@ class FutureWorkoutSerializer(serializers.ModelSerializer):
             'future_workout_id',
             'member_id',
             'level_id',
-            'category_id',
+            'category',
             'name',
             'perform_on',
         )
@@ -54,7 +54,7 @@ class PriorWorkoutSerializer(serializers.ModelSerializer):
             'prior_workout_id',
             'member_id',
             'level_id',
-            'category_id',
+            'category',
             'when_completed',
         )
         model = PriorWorkout
@@ -66,7 +66,7 @@ class TemplateWorkoutSerializer(serializers.ModelSerializer):
             'template_id',
             'member_id',
             'level_id',
-            'category_id',
+            'category',
             'name',
         )
         model = TemplateWorkout

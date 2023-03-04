@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -61,6 +62,10 @@ class FutureWorkoutList(mixins.ListModelMixin, mixins.CreateModelMixin, generics
     queryset = FutureWorkout.objects.all()
     serializer_class = FutureWorkoutSerializer
 
+    def get_queryset(self):
+        member = self.kwargs['member_id']
+        return PriorWorkout.objects.filter(member_id=member)
+
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
@@ -111,6 +116,10 @@ class PriorWorkoutList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.
     queryset = PriorWorkout.objects.all()
     serializer_class = PriorWorkoutSerializer
 
+    def get_queryset(self):
+        member = self.kwargs['member_id']
+        return PriorWorkout.objects.filter(member_id=member)
+
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
 
@@ -130,7 +139,6 @@ class PriorWorkoutDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mix
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
-
 
 class PriorWorkoutExerciseList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = PriorWorkout.objects.all()
@@ -160,6 +168,10 @@ class PriorWorkoutExerciseDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMi
 class TemplateWorkoutList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = TemplateWorkout.objects.all()
     serializer_class = TemplateWorkoutSerializer
+
+    def get_queryset(self):
+        member = self.kwargs['member_id']
+        return PriorWorkout.objects.filter(member_id=member)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
