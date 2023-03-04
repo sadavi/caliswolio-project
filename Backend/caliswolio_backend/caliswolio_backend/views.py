@@ -141,8 +141,8 @@ class PriorWorkoutDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mix
         return self.destroy(request, *args, **kwargs)
 
 class PriorWorkoutExerciseList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
-    queryset = PriorWorkout.objects.all()
-    serializer_class = PriorWorkoutSerializer
+    queryset = PriorWorkoutExercise.objects.all()
+    serializer_class = PriorWorkoutExerciseSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
