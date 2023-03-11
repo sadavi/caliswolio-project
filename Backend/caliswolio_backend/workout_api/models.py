@@ -64,7 +64,7 @@ class PriorWorkout(models.Model):  #CRUD
 
 class TemplateWorkout(models.Model): #CRUD 
     template_id = models.AutoField(db_column='Template_ID', primary_key=True, blank=True, null=False)
-    member = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='temp_mem', db_column='Member_ID')
+    member_id = models.ForeignKey('MemberAccount', models.DO_NOTHING, related_name='temp_mem', db_column='Member_ID')
     level_id = models.ForeignKey('Level', models.DO_NOTHING, default= 1, related_name= 'temp_level_id', db_column='Level_ID')
     category = models.TextField(db_column='Category', default='null')
     name = models.TextField(db_column='Name')
