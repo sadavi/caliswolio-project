@@ -11,10 +11,10 @@ class Level(models.Model):  #R*
 
     class Meta:
         db_table = 'Level'
-    
 
-    class Meta:
-        db_table = 'Member_account'
+    def __str__(self):
+        return '{}'.format(self.name)
+    
 
 class Exercise(models.Model):  #R*
     exercise_id = models.AutoField(db_column='Exercise_ID', primary_key=True, blank=True, null=False)
@@ -27,6 +27,9 @@ class Exercise(models.Model):  #R*
         # managed = False
         db_table = 'Exercise'
 
+    def __str__(self):
+        return '{}'.format(self.name)
+
 
 class MemberAccount(models.Model):  #CR*UD
     member_id = models.AutoField(db_column='Member_ID', primary_key=True, blank=True, null=False)
@@ -37,6 +40,12 @@ class MemberAccount(models.Model):  #CR*UD
     birth_year = models.IntegerField(db_column='Birth_Year')
     gender = models.TextField(db_column='Gender')
     zipcode = models.IntegerField(db_column='Zipcode')
+
+    class Meta:
+        db_table = 'Member_account'
+
+    def __str__(self):
+        return '{}'.format(self.email)
     
 
 class FutureWorkout(models.Model):  #CRUD
@@ -50,6 +59,9 @@ class FutureWorkout(models.Model):  #CRUD
     class Meta:
         db_table = 'Future_Workout'
 
+    def __str__(self):
+        return '{}'.format(self.name)
+
 
 class PriorWorkout(models.Model):  #CRUD
     prior_workout_id = models.AutoField(db_column='Workout_ID', primary_key=True, blank=True, null=False)
@@ -60,6 +72,9 @@ class PriorWorkout(models.Model):  #CRUD
 
     class Meta:
         db_table = 'Prior_Workout'
+
+    def __str__(self):
+        return '{}'.format(self.member_id)
 
 
 class TemplateWorkout(models.Model): #CRUD 
@@ -72,6 +87,9 @@ class TemplateWorkout(models.Model): #CRUD
     class Meta:
         db_table = 'Template_Workout'
 
+    def __str__(self):
+        return '{}'.format(self.name)
+
 class TemplateExercise(models.Model):   #CRUD
     template_ex_id = models.AutoField(db_column='Template_Ex_ID', primary_key=True, blank=True, null=False)
     template_id = models.ForeignKey('TemplateWorkout', models.DO_NOTHING, db_column='Template_ID')
@@ -83,6 +101,9 @@ class TemplateExercise(models.Model):   #CRUD
     class Meta:
         db_table = 'Template_Exercise'
 
+    def __str__(self):
+        return '{}'.format(self.template_id)
+
 class FutureWorkoutExercise(models.Model):   #CRUD
     future_workout_ex_id = models.AutoField(db_column='Future_Workout_Ex_ID', primary_key=True, blank=True, null=False)
     future_workout_id = models.ForeignKey('FutureWorkout', models.DO_NOTHING, db_column='Future_Workout_ID')
@@ -93,6 +114,9 @@ class FutureWorkoutExercise(models.Model):   #CRUD
 
     class Meta:
         db_table = 'Future_Workout_Exercise'
+
+    def __str__(self):
+        return '{}'.format(self.future_workout_id)
 
 
 class PriorWorkoutExercise(models.Model): #CRUD
@@ -106,6 +130,9 @@ class PriorWorkoutExercise(models.Model): #CRUD
     class Meta:
         # managed = False
         db_table = 'Prior_Workout_Exercise'
+
+    def __str__(self):
+        return '{}'.format(self.prior_workout_id)
 
 
 
