@@ -1,9 +1,6 @@
 # caliswolio-project
-By: Paul Garland, Michael Mears,
+By: Paul Garland, Michael Mears, Seth Davis
 
-
-Known Issues:
-1. Member account table not recognized by django
-2. http://127.0.0.1:8000/getExercise/1/   Reporting field erro, trying to resolve keyword 'id' into field
-
-
+*NOT ACTIVELY MANAGED*
+*This was a college project created as a group project that has ended, additional updates MAY happen at the discretion of the members who built it.*
+Caliswolio is a calistenics Workout Manager for users to find exercises, as well as build, save and, schedule workouts. Has guest and member accounts options that enable the user to personalize the application to their liking.
